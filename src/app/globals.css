@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * MindPAL marketing site theme — mirrors the app's calm, glassmorphism +
+ * soft-neon design language (deep navy, cyan + violet accents, glass surfaces).
+ * Tailwind v4 CSS-first config: tokens declared here generate the utilities
+ * (bg-neon, text-violet, border-border, animate-accordion-down, …).
+ */
+@theme {
+  --color-background: #050814;
+  --color-surface: #0a1226;
+  --color-foreground: #e8f4ff;
+  --color-muted: #93a9c0;
+
+  --color-neon: #5debff;
+  --color-neon-soft: #7af0ff;
+  --color-violet: #8b4dff;
+  --color-mint: #34e5a0;
+
+  --color-border: rgba(148, 232, 255, 0.14);
+  --color-ring: rgba(93, 235, 255, 0.55);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-accordion-down: accordion-down 0.22s ease-out;
+  --animate-accordion-up: accordion-up 0.22s ease-out;
+  --animate-float: float 7s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #050814;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(55rem 55rem at 12% -12%, rgba(93, 235, 255, 0.13), transparent 60%),
+      radial-gradient(48rem 48rem at 100% -5%, rgba(139, 77, 255, 0.13), transparent 55%),
+      radial-gradient(40rem 40rem at 50% 118%, rgba(52, 229, 160, 0.08), transparent 60%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgba(93, 235, 255, 0.25);
+    color: #ffffff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Frosted glass surface (cards, header, pills). */
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid var(--color-border);
+  }
+  .glass-soft {
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border);
+  }
+
+  /* Gradient headline text. */
+  .text-gradient {
+    background: linear-gradient(100deg, #ffffff 0%, #7af0ff 48%, #b89cff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Soft neon glow behind hero elements. */
+  .glow-ring {
+    box-shadow:
+      0 0 0 1px rgba(93, 235, 255, 0.18),
+      0 18px 60px -18px rgba(93, 235, 255, 0.35);
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
