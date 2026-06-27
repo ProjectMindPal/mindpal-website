@@ -29,6 +29,12 @@ export function SiteFooter() {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/privacy-choices"
+                className="text-sm text-muted transition-colors hover:text-foreground"
+              >
+                Privacy Choices
+              </Link>
             </div>
 
             <div className="flex flex-col gap-3">
