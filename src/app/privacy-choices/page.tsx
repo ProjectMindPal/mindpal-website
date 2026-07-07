@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { LEGAL_LAST_UPDATED } from "@/lib/legal";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -8,8 +9,6 @@ export const metadata: Metadata = {
   description:
     "The privacy rights available to you in MindPAL — how to access, correct, delete, and control your personal information, including details for California residents.",
 };
-
-const LAST_UPDATED = "June 2026";
 
 function Section({
   title,
@@ -60,7 +59,9 @@ export default function PrivacyChoicesPage() {
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Your Privacy Choices
           </h1>
-          <p className="mt-4 text-sm text-muted">Last updated: {LAST_UPDATED}</p>
+          <p className="mt-4 text-sm text-muted">
+            Last updated: {LEGAL_LAST_UPDATED}
+          </p>
         </div>
 
         <div className="mt-10 glass rounded-3xl px-6 py-8 sm:px-10 sm:py-10">
@@ -92,8 +93,12 @@ export default function PrivacyChoicesPage() {
               <Link href="/privacy" className="text-neon hover:underline">
                 Privacy Policy
               </Link>
-              , which describes in full what we collect, why, and how we protect
-              it.
+              {" "}and our{" "}
+              <Link href="/terms" className="text-neon hover:underline">
+                Terms of Service
+              </Link>
+              , which describe in full what we collect, why, how we protect it,
+              and how the service works.
             </p>
           </div>
 
@@ -354,6 +359,10 @@ export default function PrivacyChoicesPage() {
                   <strong className="text-foreground">Related:</strong>{" "}
                   <Link href="/privacy" className="text-neon hover:underline">
                     Privacy Policy
+                  </Link>
+                  {" "}and{" "}
+                  <Link href="/terms" className="text-neon hover:underline">
+                    Terms of Service
                   </Link>
                 </>,
               ]}
