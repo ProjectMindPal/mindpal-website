@@ -11,7 +11,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { AppStoreButton } from "@/components/app-store-button";
+import { AppStoreButton, PlayStoreButton } from "@/components/app-store-button";
 import { siteConfig } from "@/lib/site";
 
 const features = [
@@ -73,8 +73,11 @@ export default function HomePage() {
             premium, and entirely yours.
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <AppStoreButton />
+          <div className="mt-9 flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <AppStoreButton />
+              <PlayStoreButton />
+            </div>
             <Button asChild variant="outline" size="lg">
               <Link href="#features">Explore features</Link>
             </Button>
@@ -191,8 +194,9 @@ export default function HomePage() {
           <p className="mx-auto mt-5 max-w-xl leading-relaxed text-muted">
             Download MindPAL and give yourself a quiet, private place to think.
           </p>
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <AppStoreButton />
+            <PlayStoreButton />
           </div>
           <p className="mt-6 text-sm text-muted/80">
             Questions first?{" "}
