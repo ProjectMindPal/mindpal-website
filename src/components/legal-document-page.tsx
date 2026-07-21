@@ -20,6 +20,22 @@ function Section({ section }: { section: LegalDocument["sections"][number] }) {
             ))}
           </ul>
         ) : null}
+        {section.links ? (
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            {section.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-medium text-neon transition-colors hover:text-neon-soft hover:underline"
+              >
+                {link.label}
+                <span aria-hidden>↗</span>
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   );

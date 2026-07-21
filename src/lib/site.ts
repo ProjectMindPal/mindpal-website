@@ -6,8 +6,8 @@ export const siteConfig = {
     "MindPAL is a private AI emotional companion for reflection, gentle voice conversations, and emotional clarity — calm, premium, and built around your privacy.",
   url: "https://mindpal.app",
   supportEmail: "support@pal.services",
-  // Replace with the live App Store URL once the listing is published.
-  appStoreUrl: "https://apps.apple.com/app/mindpal",
+  appStoreUrl:
+    "https://apps.apple.com/us/app/mindpal-companion/id6780985653",
 } as const;
 
 export const nav = [

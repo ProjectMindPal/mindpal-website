@@ -1,11 +1,18 @@
 import { siteConfig } from "@/lib/site";
 
-export const LEGAL_LAST_UPDATED = "2026-07-07";
+export const LEGAL_LAST_UPDATED = "2026-07-14";
+
+export type LegalLink = {
+  label: string;
+  href: string;
+};
 
 export type LegalSection = {
   title: string;
   paragraphs?: string[];
   bullets?: string[];
+  /** Optional external references (e.g. third-party provider privacy policies). */
+  links?: LegalLink[];
 };
 
 export type LegalDocument = {
@@ -23,6 +30,7 @@ export const termsOfService: LegalDocument = {
       title: "Introduction",
       paragraphs: [
         `These Terms of Service ("Terms") govern your access to and use of ${siteConfig.name}, operated by PAL ("we", "us", or "our"). By using ${siteConfig.name}, you agree to these Terms.`,
+        `These Terms also serve as the End User License Agreement (EULA) for the ${siteConfig.name} mobile app. For subscriptions and purchases made through the Apple App Store, Apple's Standard End User License Agreement also applies; to the extent it conflicts with these Terms for App Store users, the Apple Standard EULA governs your license to use the app.`,
       ],
     },
     {
@@ -58,8 +66,8 @@ export const termsOfService: LegalDocument = {
     {
       title: "AI Processing and User Messages",
       paragraphs: [
-        "When you send messages, reflections, check-ins, prompts, uploaded or attached content, or voice transcripts, that content and limited context from the conversation may be sent to third-party AI services, including Anthropic, to generate responses, provide wellbeing features, maintain safety, and prevent abuse.",
-        "Do not submit information you do not want processed by these providers. AI providers process the content under their own policies and our agreements; they may retain limited data where required for security, abuse prevention, or legal compliance.",
+        "When you send messages, reflections, check-ins, prompts, uploaded or attached content, or voice transcripts, that content and limited context from the conversation may be sent to third-party AI services — Anthropic for text and safety AI, and ElevenLabs for voice — to generate responses, provide wellbeing features, maintain safety, and prevent abuse.",
+        "Before this data is shared, the app discloses what is sent, names Anthropic and ElevenLabs, and asks for your explicit permission. Do not submit information you do not want processed by these providers. AI providers process the content under their own policies and our agreements, are required to protect it to a standard equal to our Privacy Policy, and may retain limited data where required for security, abuse prevention, or legal compliance.",
       ],
     },
     {
@@ -74,7 +82,9 @@ export const termsOfService: LegalDocument = {
     {
       title: "Subscriptions, Billing, Free Trials, and Cancellations",
       paragraphs: [
-        "Paid features may require a subscription. Billing is processed through in-app purchases and subscriptions via Apple App Store, Google Play Store, or other applicable app stores. Subscriptions may auto-renew unless canceled according to store rules.",
+        "MindPAL offers MindPAL Plus, an auto-renewable monthly subscription that unlocks expanded messaging, included premium voice minutes, and Plus-only features. The price is shown in the app on the subscription screen before purchase (for example, US$9.99/month; prices are localized and confirmed at checkout by your app store).",
+        "MindPAL also offers optional one-time (consumable) purchases such as additional voice minutes and Chat Token packs. These are charged once and do not auto-renew.",
+        "Payment is charged to your app store account at confirmation of purchase. An auto-renewable subscription renews for the same period and price unless it is turned off at least 24 hours before the end of the current period. You can manage or cancel a subscription anytime in your app store account settings; deleting the app does not cancel a subscription. Any unused portion of a free trial, if offered, is forfeited when you purchase a subscription.",
       ],
     },
     {
@@ -92,7 +102,11 @@ export const termsOfService: LegalDocument = {
     {
       title: "Third-Party Services",
       paragraphs: [
-        "We use third-party providers including Anthropic, ElevenLabs, Firebase Analytics, app stores, payment processors, and infrastructure providers. Their handling of data is described in our Privacy Policy.",
+        "We use third-party providers including Anthropic (chat and safety AI), ElevenLabs (voice), Firebase Analytics, app stores, payment processors, and infrastructure providers. Their handling of data is described in our Privacy Policy, and AI providers are required to protect your data to a standard equal to ours.",
+      ],
+      links: [
+        { label: "Anthropic Privacy Policy", href: "https://www.anthropic.com/legal/privacy" },
+        { label: "ElevenLabs Privacy Policy", href: "https://elevenlabs.io/privacy" },
       ],
     },
     {
@@ -198,15 +212,34 @@ export const privacyPolicy: LegalDocument = {
     {
       title: "Data Sent to Third-Party AI Services",
       paragraphs: [
-        "MindPAL uses third-party AI services to process user messages and generate responses. For text features, the message or journal text you submit, relevant conversation context, AI safety signals, and technical request metadata may be sent to Anthropic to generate an AI response and operate the service.",
-        "For voice features, audio may be sent to ElevenLabs for speech processing and voice output, and the resulting transcript and relevant context may be sent to Anthropic. We do not store raw audio recordings; voice input is processed in real time and deleted after processing.",
-        "We use this processing only to provide MindPAL's AI conversation, reflection, safety, voice, and support features. We do not sell your personal information or use private conversations for advertising.",
+        "MindPAL relies on third-party AI providers to generate responses and operate its features. When you use chat and other text features, the following may be sent to Anthropic (the provider of the Claude AI models): the messages or journal text you submit, relevant conversation context, optional photos you attach, reflections and check-in content, AI safety signals, and limited technical request metadata needed to operate the service.",
+        "When you use voice features, your audio is sent to ElevenLabs for speech-to-text and voice generation, and the resulting transcript and relevant context are then sent to Anthropic to generate PAL's reply. We do not store raw audio recordings; voice input is processed in real time and deleted after processing.",
+        "We use this processing only to provide MindPAL's AI conversation, reflection, safety, voice, and support features. We do not sell your personal information and do not use your private conversations for advertising or to train third-party foundation models.",
+      ],
+    },
+    {
+      title: "Third-Party AI Providers and Equivalent Protection",
+      paragraphs: [
+        "We only work with reputable AI providers that maintain industry-standard security and privacy practices. Our providers are Anthropic (chat, reflection, and safety AI) and ElevenLabs (speech-to-text and voice generation for voice features).",
+        "These providers act as our service providers / processors. They are bound by contract (or equivalent terms) to process the personal data we send only to provide their services to us, to keep it secure, and not to sell it or use it for their own advertising. We require them to provide privacy and security protections that are the same as, or equal to, those described in this Privacy Policy for the data they process on our behalf, subject to their published policies and applicable law.",
+        "You can review each provider's own privacy practices directly:",
+      ],
+      links: [
+        { label: "Anthropic Privacy Policy", href: "https://www.anthropic.com/legal/privacy" },
+        { label: "ElevenLabs Privacy Policy", href: "https://elevenlabs.io/privacy" },
+      ],
+    },
+    {
+      title: "Your In-App Consent Before AI Sharing",
+      paragraphs: [
+        "Before any messages, conversation context, attachments, or voice data are sent to Anthropic or ElevenLabs, the MindPAL app shows an in-app disclosure that names these providers and explains what is sent and why, and asks for your explicit permission. Accepting this Privacy Policy is not the only control — you also see and must accept a dedicated AI data-sharing consent screen inside the app, and a separate voice consent notice before any audio is sent.",
+        "If you decline, features that require third-party AI processing are not available, but you can continue to use parts of the app that do not require it. You can review these disclosures again in the app under Settings → Legal → AI Disclosure and Privacy Policy.",
       ],
     },
     {
       title: "How We Share Information",
       paragraphs: [
-        "We share information with service providers who help us operate the app and website, including AI providers, voice providers, infrastructure providers, analytics providers, app stores, payment processors, and customer support tools. We may also disclose information when required by law, to protect rights and safety, or in connection with a business transfer.",
+        "We share information with service providers who help us operate the app and website, including AI providers (Anthropic), voice providers (ElevenLabs), infrastructure and hosting providers, analytics providers, app stores, payment processors, and customer support tools. Each is permitted to use the data only to provide services to us and must protect it to a standard equal to this policy. We may also disclose information when required by law, to protect rights and safety, or in connection with a business transfer.",
         "We do not sell your personal information and do not share private conversations for cross-context behavioral advertising.",
       ],
     },

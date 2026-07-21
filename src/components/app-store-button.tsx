@@ -59,6 +59,9 @@ export function AppStoreButton({ className }: { className?: string }) {
 export function PlayStoreButton({ className }: { className?: string }) {
   return (
     <div
+      role="button"
+      aria-disabled="true"
+      title="MindPAL for Android is coming soon to Google Play"
       className={cn(
         "store-soon relative inline-flex cursor-default select-none items-center gap-3 rounded-2xl px-5 py-3 sm:min-w-[210px]",
         className,
